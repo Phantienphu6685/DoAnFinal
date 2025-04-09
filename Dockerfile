@@ -1,11 +1,10 @@
-# Sử dụng image PHP + Apache
 FROM php:8.1-apache
 
-# Copy mã nguồn vào thư mục web server
-COPY . /var/www/html/
-
-# Mở port
-EXPOSE 80
+# Cài mysqli
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 # Kích hoạt mod_rewrite nếu cần
 RUN a2enmod rewrite
+
+# Copy source code vào container
+COPY . /var/www/html/
